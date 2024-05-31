@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <record id="patient_form_view" model="ir.ui.view">
+            <field name="name">Patient Form View</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                 <sheet>
+                     <group>
+                         <group string="General info">
+                             <field name="first_name"/>
+                             <field name="last_name"/>
+                             <field name="birth_date"/>
+                             <field name="age"/>
+                             <field name="address"/>
+                             <field name="image" widget="image" options="{'size': [100, 100]}"/>
+                         </group>
+                         <group string="Additional info">
+                             <field name="blood_type"/>
+                             <field name="pcr"/>
+                             <field name="cr_ratio"/>
+                         </group>
+                     </group>
+                     <notebook>
+                         <page string="History">
+                             <field name="history"/>
+                         </page>
+                     </notebook>
+                 </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="patient_tree_view" model="ir.ui.view">
+            <field name="name">Patient Tree View</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="blood_type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="patient_kanban_view" model="ir.ui.view">
+            <field name="name">Patient Kanban View</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <kanban class="o_patient_kanban">
+                    <field name="id"/>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="address"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"
+                                         t-att-src="kanban_image('hms.patient', 'image',record.id.raw_value)"/>
+                                </div>
+
+                                <div class="oe_kanban_details">
+                                    <strong>
+                                        <span t-esc="record.first_name.raw_value"/>
+                                        <span></span>
+                                        <span t-esc="record.last_name.raw_value"/>
+                                    </strong>
+                                    <div>
+                                        <span>Age:</span>
+                                        <span t-esc="record.age.raw_value"/>
+                                    </div>
+                                    <div>
+                                        <span t-esc="record.address.raw_value"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+        <menuitem id="patients_menuitem"
+                  name="Patients"
+                  parent="patient_root_menu"
+                  action="patient_action"/>
+    </data>
+</odoo>

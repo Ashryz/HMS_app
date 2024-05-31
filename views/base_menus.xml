@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <menuitem id="hms_root_menu"
+                  name="HMS"
+                  web_icon="hms_app,static/description/icon.png"/>
+        <menuitem id="patient_root_menu"
+                  name="Patient"
+                  parent="hms_root_menu"/>
+
+    </data>
+</odoo>
