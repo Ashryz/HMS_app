@@ -6,6 +6,12 @@
         <menuitem id="patient_root_menu"
                   name="Patient"
                   parent="hms_root_menu"/>
+        <menuitem id="department_root_menu"
+                  name="Department"
+                  parent="hms_root_menu"/>
+         <menuitem id="doctor_root_menu"
+                  name="Doctor"
+                  parent="hms_root_menu"/>
 
     </data>
 </odoo>

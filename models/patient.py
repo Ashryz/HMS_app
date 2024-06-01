@@ -22,6 +22,13 @@ class Patient(models.Model):
         ('o_positive', 'O+'), ('o_negative', 'O-'),
     ])
     history = fields.Html()
+    department_id = fields.Many2one('hms.department')
+    state = fields.Selection([
+        ('undetermined', 'Undetermined'),
+        ('good', 'Good'),
+        ('fair', 'Fair'),
+        ('serious', 'Serious'),
+    ])
 
     @api.depends("birth_date")
     def compute_age(self):

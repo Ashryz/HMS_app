@@ -7,7 +7,7 @@
                 <form>
                  <sheet>
                      <group>
-                         <group string="General info">
+                         <group string="Personal Info">
                              <field name="first_name"/>
                              <field name="last_name"/>
                              <field name="birth_date"/>
@@ -15,10 +15,12 @@
                              <field name="address"/>
                              <field name="image" widget="image" options="{'size': [100, 100]}"/>
                          </group>
-                         <group string="Additional info">
+                         <group string="Medical Info">
+                             <field name="state"/>
                              <field name="blood_type"/>
                              <field name="pcr"/>
                              <field name="cr_ratio"/>
+                             <field name="department_id"/>
                          </group>
                      </group>
                      <notebook>
@@ -64,7 +66,7 @@
                                 <div class="oe_kanban_details">
                                     <strong>
                                         <span t-esc="record.first_name.raw_value"/>
-                                        <span></span>
+                                        <span> </span>
                                         <span t-esc="record.last_name.raw_value"/>
                                     </strong>
                                     <div>

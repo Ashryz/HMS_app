@@ -6,6 +6,8 @@
     "application": True,
     "data": [
         "views/base_menus.xml",
-        "views/patient.xml"
+        "views/patient.xml",
+        "views/department.xml",
+        "views/doctor.xml",
     ],
 }
