@@ -6,6 +6,9 @@ Odoo app for hospital management system
   * using computed field to calculate age 
   * make relation with departments model
   * adding field state to the model
+  * adding onChange on age field
+  * make some validation and constrains on pcr,cr ratio
+  * create relation many2many with doctor model
 - create doctors model
 - create departments model
   * make relation with patients model
@@ -21,3 +24,6 @@ Odoo app for hospital management system
 - create department views
   * tree view
   * form view
+  
+### Wizard
+- create wizard to get patient history log

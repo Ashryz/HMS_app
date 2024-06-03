@@ -5,30 +5,37 @@
             <field name="model">hms.patient</field>
             <field name="arch" type="xml">
                 <form>
-                 <sheet>
-                     <group>
-                         <group string="Personal Info">
-                             <field name="first_name"/>
-                             <field name="last_name"/>
-                             <field name="birth_date"/>
-                             <field name="age"/>
-                             <field name="address"/>
-                             <field name="image" widget="image" options="{'size': [100, 100]}"/>
-                         </group>
-                         <group string="Medical Info">
-                             <field name="state"/>
-                             <field name="blood_type"/>
-                             <field name="pcr"/>
-                             <field name="cr_ratio"/>
-                             <field name="department_id"/>
-                         </group>
-                     </group>
-                     <notebook>
-                         <page string="History">
-                             <field name="history"/>
-                         </page>
-                     </notebook>
-                 </sheet>
+                    <sheet>
+                        <group>
+                            <group string="Personal Info">
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                                <field name="birth_date"/>
+                                <field name="age"/>
+                                <field name="address"/>
+                                <field name="image" widget="image" options="{'size': [100, 100]}"/>
+                            </group>
+                            <group string="Medical Info">
+                                <field name="state"/>
+                                <field name="blood_type"/>
+                                <field name="pcr"/>
+                                <field name="cr_ratio" attrs="{'required':[('pcr','=',True)]}"/>
+                                <field name="department_id" domain="[('is_opened','=', True)]"/>
+                                <field name="doctor_ids" widget="many2many_tags" attrs="{'readonly':[('department_id','=',False)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="History">
+                                <field name="history_ids" attrs="{'invisible':[('age','&lt;','50')]}">
+                                    <tree>
+                                        <field name="create_by"/>
+                                        <field name="date"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -66,7 +73,7 @@
                                 <div class="oe_kanban_details">
                                     <strong>
                                         <span t-esc="record.first_name.raw_value"/>
-                                        <span> </span>
+                                        <span></span>
                                         <span t-esc="record.last_name.raw_value"/>
                                     </strong>
                                     <div>
