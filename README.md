@@ -9,8 +9,10 @@ Odoo app for hospital management system
   * adding onChange on age field
   * make some validation and constrains on pcr,cr ratio
   * create relation many2many with doctor model
+  * add mail field to patient and used apiConstrains
 - create doctors model
 - create departments model
+- create customer inherit model from crm
   * make relation with patients model
 ### Views 
 - create patient views
@@ -24,6 +26,7 @@ Odoo app for hospital management system
 - create department views
   * tree view
   * form view
+- add field in inherited customer view
   
 ### Wizard
 - create wizard to get patient history log

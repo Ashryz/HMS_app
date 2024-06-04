@@ -10,6 +10,7 @@
                             <group string="Personal Info">
                                 <field name="first_name"/>
                                 <field name="last_name"/>
+                                <field name="email"/>
                                 <field name="birth_date"/>
                                 <field name="age"/>
                                 <field name="address"/>
@@ -46,6 +47,7 @@
                 <tree>
                     <field name="first_name"/>
                     <field name="last_name"/>
+                    <field name="email"/>
                     <field name="age"/>
                     <field name="blood_type"/>
                 </tree>
@@ -59,6 +61,7 @@
                     <field name="id"/>
                     <field name="first_name"/>
                     <field name="last_name"/>
+                    <field name="email"/>
                     <field name="age"/>
                     <field name="address"/>
                     <field name="image"/>
@@ -73,15 +76,20 @@
                                 <div class="oe_kanban_details">
                                     <strong>
                                         <span t-esc="record.first_name.raw_value"/>
-                                        <span></span>
+                                        <span> </span>
                                         <span t-esc="record.last_name.raw_value"/>
                                     </strong>
+                                     <div t-if="record.email.raw_value">
+                                        <span>Email:</span>
+                                            <t t-esc="record.email.raw_value"/>
+                                    </div>
                                     <div>
                                         <span>Age:</span>
                                         <span t-esc="record.age.raw_value"/>
                                     </div>
-                                    <div>
-                                        <span t-esc="record.address.raw_value"/>
+                                    <div t-if="record.address.raw_value">
+                                        <span>Address:</span>
+                                        <t t-esc="record.address.raw_value"/>
                                     </div>
                                 </div>
                             </div>

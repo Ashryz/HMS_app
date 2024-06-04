@@ -1,6 +1,7 @@
-from dateutil.relativedelta import relativedelta
-
 from odoo import models, fields, api
+from dateutil.relativedelta import relativedelta
+import re
+from odoo.exceptions import ValidationError
 
 
 class Patient(models.Model):
@@ -11,6 +12,7 @@ class Patient(models.Model):
     first_name = fields.Char(required=True)
     last_name = fields.Char(required=True)
     birth_date = fields.Date()
+    email = fields.Char()
     age = fields.Integer(compute="compute_age", store=True)
     address = fields.Text()
     image = fields.Binary()
@@ -66,3 +68,12 @@ class Patient(models.Model):
                         'message': 'PCR checked automatically cause to age less than 30.'
                     }
                 }
+
+    @api.constrains("email")
+    def check_email(self):
+        mail_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+        for rec in self:
+            if not re.match(mail_regex, rec.email):
+                raise ValidationError("Please provide a valid email address.")
+            if self.search([('email', '=', rec.email), ('id', '!=', rec.id)]):
+                raise ValidationError("Email address is taken it must be unique!")
