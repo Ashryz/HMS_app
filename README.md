@@ -14,6 +14,7 @@ Odoo app for hospital management system
 - create departments model
 - create customer inherit model from crm
   * make relation with patients model
+  * make Tax ID required field
 ### Views 
 - create patient views
   * Kanban view
@@ -26,7 +27,11 @@ Odoo app for hospital management system
 - create department views
   * tree view
   * form view
-- add field in inherited customer view
+- add field in inherited customer form view
+- add website field in customer tree view 
   
 ### Wizard
 - create wizard to get patient history log
+
+### Security 
+- create security access file 

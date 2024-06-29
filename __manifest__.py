@@ -5,6 +5,7 @@
     "category": "Productivity",
     "application": True,
     "data": [
+        "security/ir.model.access.csv",
         "views/base_menus.xml",
         "views/patient.xml",
         "views/department.xml",
