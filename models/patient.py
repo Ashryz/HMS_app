@@ -1,6 +1,8 @@
-from odoo import models, fields, api
-from dateutil.relativedelta import relativedelta
 import re
+
+from dateutil.relativedelta import relativedelta
+
+from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
 
@@ -73,7 +75,8 @@ class Patient(models.Model):
     def check_email(self):
         mail_regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
         for rec in self:
-            if not re.match(mail_regex, rec.email):
-                raise ValidationError("Please provide a valid email address.")
+            if rec.email:
+                if not re.match(mail_regex, rec.email):
+                    raise ValidationError("Please provide a valid email address.")
             if self.search([('email', '=', rec.email), ('id', '!=', rec.id)]):
                 raise ValidationError("Email address is taken it must be unique!")

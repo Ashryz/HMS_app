@@ -35,3 +35,6 @@ Odoo app for hospital management system
 
 ### Security 
 - create security access file 
+
+### Api
+- create controller for patients and test end point get method patient by id and post new patient
